@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: jaigouk_production
-  username: jaigouk
-  password: <%= ENV['JAIGOUK_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

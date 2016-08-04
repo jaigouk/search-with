@@ -15,12 +15,24 @@ rake db:seed
 rails server
 ```
 
+# deploy
+```
+git add .
+git commit -m "updated..."
+git push heroku master
+
+heroku run rake db:migrate
+heroku run rake db:seed
+heroku run rake searchkick:reindex:all
+```
+
 # todo
 
 - [x] relationships
 - [x] db:seed
 - [x] bootstrap 4
-- [ ] elastic search 
+- [x] elastic search 
+- [ ] facets with js
 - [ ] setup benchmarking
 - [ ] solr
 - [ ] materialized view

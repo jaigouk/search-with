@@ -32,8 +32,8 @@ m = (1..12).to_a
     outdoor: FFaker::Boolean.random
   )
   (0..3).to_a.sample.times do
-    ActivityTag.create(activity: activity, tag: Tag.all.sample)
+    ActivityTag.create(activity_id: activity.id, tag_id: Tag.all.sample.id)
   end
-  ActivityLocation.create(activity: activity, location: Location.all.sample)
+  ActivityLocation.create(activity_id: activity.id, location_id: Location.all.sample.id)
 end
 
