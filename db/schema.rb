@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804150752) do
+ActiveRecord::Schema.define(version: 20160804230451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20160804150752) do
     t.boolean  "outdoor"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["camp"], name: "index_activities_on_camp", using: :btree
+    t.index ["date_night"], name: "index_activities_on_date_night", using: :btree
+    t.index ["drop_in"], name: "index_activities_on_drop_in", using: :btree
+    t.index ["end_months_old"], name: "index_activities_on_end_months_old", using: :btree
+    t.index ["indoor"], name: "index_activities_on_indoor", using: :btree
+    t.index ["outdoor"], name: "index_activities_on_outdoor", using: :btree
+    t.index ["start_months_old"], name: "index_activities_on_start_months_old", using: :btree
   end
 
   create_table "activity_locations", force: :cascade do |t|

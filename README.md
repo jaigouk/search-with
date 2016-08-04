@@ -16,6 +16,7 @@ rails server
 ```
 
 # deploy
+
 ```
 git add .
 git commit -m "updated..."
