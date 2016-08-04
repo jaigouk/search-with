@@ -3,36 +3,57 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
-# Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
-# Use Puma as the app server
 gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
+gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
+gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
+gem "ffaker"
+
+gem "readthis"
+gem "kaminari"
+gem "active_model_serializers", "0.10.1"
+
+## scenic & materialized view
+gem "redis"
+gem "hiredis"
+gem "scenic"
+gem "textacular"
+
+## searchkick
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
+gem 'searchkick', '~> 0.9.1'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem "database_cleaner"
+  gem "generator_spec"
+  gem "launchy"
+
+  gem "pry"
+  gem "pry-doc"
+  gem "pry-rails"
+  gem "pry-stack_explorer"
+  gem "pry-rescue"
+  gem "pry-byebug"
+  gem "guard-rspec", "~> 4.7"
+
+  gem "scss_lint", require: false
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+
+  gem "foreman"
+  gem "factory_girl_rails"
+
+  gem "spring"
+  gem "spring-commands-rspec"
 end
 
 group :development do
@@ -46,3 +67,14 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :test do
+  gem "rspec", "= 3.5.0.beta3"
+  gem "rspec-core", "= 3.5.0.beta3"
+  gem "rspec-expectations", "= 3.5.0.beta3"
+  gem "rspec-mocks", "= 3.5.0.beta3"
+  gem "rspec-support", "= 3.5.0.beta3"
+  gem "rspec-rails", "3.5.0.beta3"
+  gem "rspec-retry"
+  gem 'shoulda-matchers', '~> 3.1'
+end

@@ -1,3 +1,4 @@
 class Tag < ApplicationRecord
-	# title
+	has_many :activity_tags
+  has_many :activities, through: :activity_tags
 end

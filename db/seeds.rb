@@ -1,7 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'ffaker'
+15.times do
+  random = FFaker::CheesyLingo.words.first.downcase
+  tag  = Tag.new
+  tag.title = loop do
+    break random unless Tag.exists?(title: random.first)
+  end
+  tag.save
+end
+
+
+100.times do |i|
+  city = FFaker::Address.city.downcase
+  addr = FFaker::Address.street_address
+  Location.create(name: "#{city}-#{i}", city: city, line1: addr)
+end
+
+
+m = (1..12).to_a
+1000.times do
+  picked = m.sample
+  activity = Activity.create(
+    title: FFaker::DizzleIpsum.words.sample.capitalize,
+    about: FFaker::HipsterIpsum.paragraph,
+    price: (1..9).to_a.sample * 100,
+    start_months_old: m.sample,
+    end_months_old: m.split(picked).last.sample,
+    camp: FFaker::Boolean.random,
+    drop_in: FFaker::Boolean.random,
+    date_night: FFaker::Boolean.random,
+    indoor: FFaker::Boolean.random,
+    outdoor: FFaker::Boolean.random
+  )
+  (0..3).to_a.sample.times do
+    ActivityTag.create(activity: activity, tag: Tag.all.sample)
+  end
+  ActivityLocation.create(activity: activity, location: Location.all.sample)
+end
+
