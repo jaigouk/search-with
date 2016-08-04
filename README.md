@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://serene-stream-86224.herokuapp.com
 
-Things you may want to cover:
+* create a very simple app that has some "activity" records with various attributes
+* a user should be able to check/uncheck boxes on the left filter panel (and/or, if we have time, to do full-text search)
+* activity records on the right activity table update via javascript.
 
-* Ruby version
+# setup
 
-* System dependencies
+```
+bundle install
+rake db:setup
+rake db:seed
+rails server
+```
 
-* Configuration
+# todo
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [x] relationships
+- [x] db:seed
+- [x] bootstrap 4
+- [ ] elastic search 
+- [ ] setup benchmarking
+- [ ] solr
+- [ ] materialized view
+- [ ] [Typehead](https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md)

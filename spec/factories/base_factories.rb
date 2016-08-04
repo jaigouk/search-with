@@ -4,7 +4,7 @@ FactoryGirl.define do
   end
 
   factory :location do
-    name { FFaker::FFaker::InternetSE.user_name_random }
+    name { FFaker::InternetSE.user_name_random }
     city { FFaker::Address.city.downcase }
     line1 { FFaker::Address.street_address }
   end

@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-////= require tether
+//= require tether
 //= require bootstrap
 //= require_tree .

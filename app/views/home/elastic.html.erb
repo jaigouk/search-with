@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-12 col-md-2">
+      <button type="button" class="btn btn-outline-secondary elastic-option dropin" data-toggle="button" aria-pressed="false" autocomplete="off">Drop in</button>
+      <button type="button" class="btn btn-outline-secondary elastic-option date-night" data-toggle="button" aria-pressed="false" autocomplete="off">Date night</button>
+      <button type="button" class="btn btn-outline-secondary elastic-option camp" data-toggle="button" aria-pressed="false" autocomplete="off">Camp</button>
+      <button type="button" class="btn btn-outline-secondary elastic-option indoor" data-toggle="button" aria-pressed="false" autocomplete="off">Indoor</button>
+      <button type="button" class="btn btn-outline-secondary elastic-option outdoor" data-toggle="button" aria-pressed="false" autocomplete="off">Outdoor</button>
+    </div>
+
+    <div class="col-xs-12 col-md-10" style="padding-left: 80px">
+      <h2>Activity table - Elastic</h2>
+
+      <%= form_tag elastic_path, method: :get do %>
+        <%= text_field_tag :q, nil, placeholder: "Search", id: "elastic-search" %>
+      <% end %>
+
+      <% if @activities.suggestions.any? %>
+        <p>Did you mean: <%= @activities.suggestions.first %></p>
+      <% end %>
+
+      <% @activities.each do |activity| %>
+        <div>
+          <p><%= activity.title %> (<%= activity.tags.map(&:title).join(", ") %>) </p>
+        </div>
+      <% end %>
+
+      <%= paginate @activities %>
+    </div>
+  </div>
+</div>

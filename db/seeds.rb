@@ -17,11 +17,11 @@ end
 
 
 m = (1..12).to_a
-1000.times do
+1000.times do |i|
   picked = m.sample
   activity = Activity.create(
-    title: FFaker::DizzleIpsum.words.sample.capitalize,
-    about: FFaker::HipsterIpsum.paragraph,
+    title: "#{FFaker::DizzleIpsum.words.sample.capitalize} #{i}",
+    about: "#{i} #{FFaker::HipsterIpsum.paragraph}",
     price: (1..9).to_a.sample * 100,
     start_months_old: m.sample,
     end_months_old: m.split(picked).last.sample,
