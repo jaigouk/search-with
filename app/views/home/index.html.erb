@@ -1,33 +1,56 @@
 <div class="container">
-	<h2>Activity table</h2>
-	<div class="filter-section" style="float:left; width: 25%;">
-		<div class="row">
-			<%= label_tag :drop_in %>
-			<%= check_box_tag :drop_in %>
-		</div>
-		<div class="row">
-			<%= label_tag :date_night %>
-			<%= check_box_tag :date_night %>
-		</div>
-		<div class="row">
-			<%= label_tag :camp %>
-			<%= check_box_tag :camp %>
-		</div>
-		<div class="row">
-			<%= label_tag :indoor %>
-			<%= check_box_tag :indoor %>
-		</div>
-		<div class="row">
-			<%= label_tag :outdoor %>
-			<%= check_box_tag :outdoor %>
-		</div>
-	</div>
-	<table id="activiy-table" style="float:left; width:75%;">
-		<tr>
-			<td>Sample first Record</td>
-		</tr>
-		<tr>
-			<td>Sample second Record</td>
-		</tr>
-	</table>
+	<h2>Benchmarking Search Options for Rails</h2>
+
+	<a href="https://gitlab.com/jaigouk/search-with/commits/master" target="_blank">
+		<img src="https://gitlab.com/jaigouk/search-with/badges/master/build.svg" style="width: 80px">
+	</a>
+
+	<ul>
+		<li>create a very simple app that has some "activity" records with various attributes</li>
+		<li>a user should be able to check/uncheck boxes on the left filter panel</li>
+		<li>activity records on the right activity table update via javascript.</li>
+		<li>benchmarking data for using famous search methods</li>
+	</ul>
+
+	<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Method</th>
+      <th>Gem</th>
+      <th>Addon</th>
+      <th>Mean Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Elastic Search</td>
+      <td>Searchkick</td>
+      <td>Bonsai</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Solr</td>
+      <td>Sunspot</td>
+      <td>Websolr</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Algolia</td>
+      <td>Algolia</td>
+      <td>Algolia</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>Materialized View with Redis</td>
+      <td>Scenic, Hiredis</td>
+      <td>Rediscloud</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
 </div>

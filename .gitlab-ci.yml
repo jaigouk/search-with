@@ -1,0 +1,50 @@
+# http://docs.gitlab.com/ce/ci/docker/using_docker_images.html
+# http://docs.gitlab.com/ce/ci/services/README.html
+image: yabawock/passenger-ruby23
+
+services:
+  - postgres:9.4
+
+variables:
+  POSTGRES_USER: runner
+  POSTGRES_HOST: "postgres"
+  POSTGRES_PASSWORD: ""
+  RAILS_ENV: test
+  REDIS_URL: "redis://localhost:6379/1"
+  ELASTICSEARCH_URL: "http://localhost:9200/"
+cache:
+  paths:
+    - vendor/bundle/
+
+before_script:
+  - apt-get update -y
+  - apt-get install -y build-essential software-properties-common openjdk-7-jre wget
+  - add-apt-repository ppa:chris-lea/redis-server
+  - apt-get install -y redis-server
+  - service redis-server restart
+
+stages:
+  - test
+  - checks
+
+spec:
+  stage: test
+  script:
+    - su "app" -c "wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.5/elasticsearch-2.3.5.tar.gz"
+    - su "app" -c "tar -xzf elasticsearch-2.3.5.tar.gz"
+    - su "app" -c "elasticsearch-2.3.5/bin/elasticsearch -d"
+    - gem install bundler --no-ri --no-rdoc
+    - touch log/application.log
+    - touch log/test.log
+    - bundle install --jobs $(nproc) --path=/cache/bundler
+    - bundle exec rake db:reset RAILS_ENV=test
+    - ./bin/rspec -f d --color --tty
+
+bundle_audit:
+  stage: checks
+  script:
+    - su - app
+    - whoami
+    - gem install bundler-audit
+    - bundle-audit update
+    - bundle-audit check

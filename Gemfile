@@ -34,9 +34,7 @@ gem "scenic"
 gem "textacular"
 
 ## searchkick
-gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'searchkick', '~> 0.9.1'
-gem 'jquery-ui-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,10 +1,13 @@
 # README
 
-https://serene-stream-86224.herokuapp.com
+[![build status](https://gitlab.com/jaigouk/search-with/badges/master/build.svg)](https://gitlab.com/jaigouk/search-with/commits/master)
+
+https://search-with.herokuapp.com
 
 * create a very simple app that has some "activity" records with various attributes
 * a user should be able to check/uncheck boxes on the left filter panel (and/or, if we have time, to do full-text search)
 * activity records on the right activity table update via javascript.
+* benchmarking data for using famous search methods
 
 # setup
 
@@ -35,6 +38,8 @@ heroku run rake searchkick:reindex:all
 - [x] elastic search 
 - [ ] facets with js
 - [ ] setup benchmarking
-- [ ] solr
-- [ ] materialized view
+- [ ] [algolia](https://www.algolia.com)
+- [ ] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
+- [ ] solr & sunspot
+- [ ] add some results on the landing page with descriptions
 - [ ] [Typehead](https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md)
