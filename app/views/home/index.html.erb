@@ -1,1 +1,33 @@
-Hello, World!
+<div class="container">
+	<h2>Activity table</h2>
+	<div class="filter-section" style="float:left; width: 25%;">
+		<div class="row">
+			<%= label_tag :drop_in %>
+			<%= check_box_tag :drop_in %>
+		</div>
+		<div class="row">
+			<%= label_tag :date_night %>
+			<%= check_box_tag :date_night %>
+		</div>
+		<div class="row">
+			<%= label_tag :camp %>
+			<%= check_box_tag :camp %>
+		</div>
+		<div class="row">
+			<%= label_tag :indoor %>
+			<%= check_box_tag :indoor %>
+		</div>
+		<div class="row">
+			<%= label_tag :outdoor %>
+			<%= check_box_tag :outdoor %>
+		</div>
+	</div>
+	<table id="activiy-table" style="float:left; width:75%;">
+		<tr>
+			<td>Sample first Record</td>
+		</tr>
+		<tr>
+			<td>Sample second Record</td>
+		</tr>
+	</table>
+</div>
