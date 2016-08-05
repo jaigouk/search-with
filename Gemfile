@@ -26,6 +26,15 @@ gem "readthis"
 gem "kaminari"
 gem "active_model_serializers"
 
+## Benchmark / Performance
+gem 'stackprof'
+gem 'memory_profiler'
+gem 'derailed_benchmarks', group: :development
+gem 'mime-types', [ '~> 2.6', '>= 2.6.1' ], require: 'mime/types/columnar'
+gem "flamegraph"
+gem 'rack-mini-profiler', require: false
+gem "bullet", :group => "development"
+
 ## scenic & materialized view
 gem "redis"
 gem "hiredis"

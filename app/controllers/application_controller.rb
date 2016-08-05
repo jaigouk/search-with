@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action do
+    # if current_user && current_user.is_admin?
+      Rack::MiniProfiler.authorize_request
+    # end
+  end
+
   private
 
    def pagination_meta(object)
