@@ -12,20 +12,19 @@ gem 'therubyracer', platforms: :ruby
 gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-# https://github.com/twbs/bootstrap-rubygem
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.1.0'
-end
-
+gem 'tether-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem "ffaker"
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'web-console', group: :development
 
 gem "readthis"
 gem "kaminari"
-gem "active_model_serializers", "0.10.1"
+gem "active_model_serializers"
 
 ## scenic & materialized view
 gem "redis"
@@ -34,7 +33,7 @@ gem "scenic"
 gem "textacular"
 
 ## searchkick
-gem 'searchkick', '~> 0.9.1'
+gem 'searchkick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,7 +48,7 @@ group :development, :test do
   gem "pry-stack_explorer"
   gem "pry-rescue"
   gem "pry-byebug"
-  gem "guard-rspec", "~> 4.7"
+  gem "guard-rspec"
 
   gem "scss_lint", require: false
   gem "brakeman", require: false
@@ -60,19 +59,9 @@ group :development, :test do
 
   gem "spring"
   gem "spring-commands-rspec"
+  gem 'spring-watcher-listen'
+  gem 'listen'
 end
-
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-  gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :test do
   gem "rspec", "= 3.5.0.beta3"

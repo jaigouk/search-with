@@ -7,11 +7,29 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
 
-# Ignore Byebug command history file.
-.byebug_history
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+/public/assets
+.env
+node_modules
+npm-debug.log*
+/coverage
+
+# Ignore bundle dependencies
+vendor/ruby
+
+# RVM gemset
+.ruby-gemset
+
+# Generated js bundles
+/app/assets/webpack/
+
+# Rubymine/IntelliJ
+.idea
+
+spec/examples.txt
