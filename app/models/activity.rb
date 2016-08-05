@@ -39,6 +39,7 @@ class Activity < ApplicationRecord
         page: page,
         per_page: per_page
       )
+      # binding.pry
       activities
     end
 

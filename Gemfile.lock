@@ -357,6 +357,7 @@ DEPENDENCIES
   scss_lint
   searchkick
   shoulda-matchers (~> 3.1)
+  simplecov
   spring
   spring-commands-rspec
   spring-watcher-listen

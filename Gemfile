@@ -73,4 +73,5 @@ group :test do
   gem "rspec-retry"
   gem 'shoulda-matchers', '~> 3.1'
   gem "codeclimate-test-reporter", require: nil
+  gem 'simplecov', require: nil
 end

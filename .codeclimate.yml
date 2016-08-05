@@ -4,7 +4,7 @@ engines:
   bundler-audit:
     enabled: true
   coffeelint:
-    enabled: true
+    enabled: false
 exclude_paths:
 - spec/**/*
 - "**/vendor/**/*"

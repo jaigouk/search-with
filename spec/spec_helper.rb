@@ -1,3 +1,8 @@
+require 'simplecov'
+require "codeclimate-test-reporter"
+SimpleCov.start if ENV["COVERAGE"]
+CodeClimate::TestReporter.start if ENV["COVERAGE"]
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -67,4 +72,34 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+
+def populate_5_activities_1
+  Activity.delete_all
+  5.times do |i|
+    tag = FactoryGirl.create(:tag)
+    bool = (1..3).include?(i) ? true : false
+    activity = FactoryGirl.create(:activity, title: "Searchkick #{i}", camp: bool, drop_in: true)
+    location = FactoryGirl.create(:location)
+    FactoryGirl.create(:activity_tag, tag: tag, activity: activity)
+    FactoryGirl.create(:activity_location, location: location, activity: activity)
+  end
+  Activity.reindex
+end
+
+def populate_5_activities_2
+  Activity.delete_all
+    5.times do |i|
+      query = (1..3).include?(i) ? "Starwars" : "Startreck"
+      about = "Master Yoda said, Do. Or do not. There is no try." if i == 3
+      bool = (2..3).include?(i) ? true : false
+
+      tag = create(:tag)
+      activity = create(:activity, title: "Searchkick #{query}", about: about, camp: bool, indoor: true)
+      location = create(:location)
+
+      create(:activity_tag, tag: tag, activity: activity)
+      create(:activity_location, location: location, activity: activity)
+    end
+    Activity.reindex
 end

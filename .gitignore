@@ -33,3 +33,5 @@ vendor/ruby
 .idea
 
 spec/examples.txt
+
+coverage
