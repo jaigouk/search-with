@@ -38,7 +38,7 @@ spec:
     - touch log/test.log
     - bundle install --jobs $(nproc) --path=/cache/bundler
     - bundle exec rake db:reset RAILS_ENV=test
-    - ./bin/rspec -f d --color --tty
+    - CODECLIMATE_REPO_TOKEN=CODECLIMATE_SEARCH_WITH_REPO_TOKEN ./bin/rspec -f d --color --tty
 
 bundle_audit:
   stage: checks

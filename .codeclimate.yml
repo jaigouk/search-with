@@ -1,0 +1,10 @@
+engines:
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  coffeelint:
+    enabled: true
+exclude_paths:
+- spec/**/*
+- "**/vendor/**/*"

@@ -1,6 +1,7 @@
 # README
 
 [![build status](https://gitlab.com/jaigouk/search-with/badges/master/build.svg)](https://gitlab.com/jaigouk/search-with/commits/master)
+[![Code Climate](https://codeclimate.com/repos/57a3fd27803a5f0084000c6a/badges/700cc6c590402e6b21af/gpa.svg)](https://codeclimate.com/repos/57a3fd27803a5f0084000c6a/feed)
 
 https://search-with.herokuapp.com
 

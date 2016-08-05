@@ -83,4 +83,5 @@ group :test do
   gem "rspec-rails", "3.5.0.beta3"
   gem "rspec-retry"
   gem 'shoulda-matchers', '~> 3.1'
+  gem "codeclimate-test-reporter", require: nil
 end
