@@ -11,8 +11,7 @@ class HomeController < ApplicationController
        render(
          json: @activities,
          serializer: ActiveModel::Serializer::CollectionSerializer,
-         each_serializer: ActivitySerializer,
-         meta: pagination_meta(@activities)
+         each_serializer: ActivitySerializer
        )
       end
       format.html
@@ -20,6 +19,6 @@ class HomeController < ApplicationController
   end
 
   def elastic_autocomplete
-    render json: Activity.search(params[:term], fields: [{title: :text_start}], limit: 5).map(&:title)
+    render json: Activity.search(search_params[:term], fields: [{title: :text_start}], limit: 5).map(&:title)
   end
 end

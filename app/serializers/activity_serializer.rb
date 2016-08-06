@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 class ActivitySerializer < ActiveModel::Serializer
-  attributes :id, :title, :about,
+  attributes :id, :title, :about, :options,
              :price, :tags, :location,
-             :start_months_old, :end_months_old,
-             :camp, :drop_in, :date_night, :indoor,
-             :outdoor,:created_at
+             :start_months_old, :end_months_old
+
+  attribute :options do
+    object.options.join(', ')
+  end
 
   attribute :tags do
     object.tags.map(&:title)

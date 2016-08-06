@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-xs-12 col-md-2">
-      <% ['dropin', 'date-night', 'camp', 'indoor', 'outdoor'].each do |option| %>
+      <% ['drop_in', 'date_night', 'camp', 'indoor', 'outdoor'].each do |option| %>
 
         <div class="form-check">
           <label class="form-check-label">
@@ -39,6 +39,7 @@
           <tr>
             <th>Price</th>
             <th colspan="2">Title</th>
+            <th>Options</th>
             <th class="text-xs-center">Tags</th>
           </tr>
         </thead>
@@ -47,6 +48,7 @@
             <tr>
               <th scope="row"><%= activity.price %></th>
               <td colspan="2"><%= activity.title %></td>
+              <td ><%= activity.options.join(', ') %></td>
               <td>
                 <%= activity.tags.map(&:title).join(', ') %>
               </td>

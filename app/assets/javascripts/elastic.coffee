@@ -13,7 +13,7 @@ jQuery ->
     for q in array
       data[q] = "true"
     $.ajax(
-      url: "/elastic", method: 'GET', data: JSON.stringify(data),
+      url: "/elastic", method: 'GET', data: data,
       contentType: "application/vnd.api+json",
       beforeSend: (xhr) ->
         $('#elastic-search-input').val('')
@@ -22,12 +22,12 @@ jQuery ->
         $('.elastic-search-result').html("")
     ).done((result) ->
       $('.spinner').html('')
-      console.log result
       for item in result.data
         $('.elastic-search-result').append("
           <tr>
               <th scope='row'>#{item.attributes.price}</th>
               <td colspan='2'>#{item.attributes.title}</td>
+              <td >#{item.attributes.options}</td>
               <td>#{item.attributes.tags}</td>
             </tr>
         ")

@@ -26,62 +26,48 @@ class Activity < ApplicationRecord
     }
   end
 
-  class << self
-    def facets_search(params)
-      query = params[:q].presence || "*"
-      page = params[:page].presence || 1
-      per_page = params[:per_page].presence || 10
 
-      activities = Activity.search(query,
-        where: conditions(params),
-        aggs: options,
-        suggest: true,
-        page: page,
-        per_page: per_page,
-        include: [:tags, :location]
-      )
-      # binding.pry
-      activities
-    end
-
-    private
-    #####
-    # Searchkik
-    # https://github.com/ankane/searchkick
-    #
-    # where: {
-    #   expires_at: {gt: Time.now}, # lt, gte, lte also available
-    #   orders_count: 1..10,        # equivalent to {gte: 1, lte: 10}
-    #   aisle_id: [25, 30],         # in
-    #   store_id: {not: 2},         # not
-    #   aisle_id: {not: [25, 30]},  # not in
-    #   user_ids: {all: [1, 3]},    # all elements in array
-    #   category: /frozen .+/,      # regexp
-    #   or: [
-    #     [{in_stock: true}, {backordered: true}]
-    #   ]
-    # }
-    def conditions(params)
-      result = {}
-
-      options.each do |option|
-        if params[option].present?
-          result[option] = [cast_boolean(params[option])]
-        end
-      end
-      result
-    end
-
-    def cast_boolean(str)
-      return true if str.is_a?(String) && str.downcase == "true"
-      return false if str.is_a?(String) && str.downcase == "false"
-      # ActiveRecord::Type::Boolean.new.cast(str.to_s.upcase)
-    end
-
-    def options
-      [:camp ,:drop_in, :date_night, :indoor, :outdoor]
-    end
+  def self.facets_search(params)
+    query = params[:q].presence || "*"
+    page = params[:page].presence || 1
+    per_page = params[:per_page].presence || 10
+    con = conditions(params)
+    activities = Activity.search(query,
+      where: con,
+      aggs: activity_options,
+      suggest: true,
+      page: page,
+      per_page: per_page,
+      include: [:tags, :location]
+    )
+    activities
   end
 
+  def self.activity_options
+    [:camp ,:drop_in, :date_night, :indoor, :outdoor]
+  end
 
+  def options
+    options = []
+    [:camp ,:drop_in, :date_night, :indoor, :outdoor].each{|x| options << x.to_s if send(x) }
+    options
+  end
+
+  private
+
+  def self.conditions(params)
+    result = {}
+
+    self.activity_options.each do |option|
+      if params[option].present?
+        result[option] = cast_boolean(params[option])
+      end
+    end
+    result
+  end
+
+  def self.cast_boolean(str)
+    return true if str.is_a?(String) && str.downcase == "true"
+    return false if str.is_a?(String) && str.downcase == "false"
+  end
 end
