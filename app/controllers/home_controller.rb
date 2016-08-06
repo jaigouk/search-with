@@ -7,7 +7,6 @@ class HomeController < ApplicationController
   def elastic
     @activities = Activity.facets_search(params)
     respond_to do |format|
-      format.html
       format.json do
        render(
          json: @activities,
@@ -16,6 +15,7 @@ class HomeController < ApplicationController
          meta: pagination_meta(@activities)
        )
       end
+      format.html
     end
   end
 

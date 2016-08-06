@@ -37,7 +37,8 @@ class Activity < ApplicationRecord
         aggs: options,
         suggest: true,
         page: page,
-        per_page: per_page
+        per_page: per_page,
+        include: [:tags, :location]
       )
       # binding.pry
       activities
@@ -72,7 +73,8 @@ class Activity < ApplicationRecord
     end
 
     def cast_boolean(str)
-      str.is_a?(String) && str.downcase == "true"
+      return true if str.is_a?(String) && str.downcase == "true"
+      return false if str.is_a?(String) && str.downcase == "false"
       # ActiveRecord::Type::Boolean.new.cast(str.to_s.upcase)
     end
 

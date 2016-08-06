@@ -2,30 +2,58 @@
   <div class="row">
 
     <div class="col-xs-12 col-md-2">
-      <button type="button" class="btn btn-outline-secondary elastic-option dropin" data-toggle="button" aria-pressed="false" autocomplete="off">Drop in</button>
-      <button type="button" class="btn btn-outline-secondary elastic-option date-night" data-toggle="button" aria-pressed="false" autocomplete="off">Date night</button>
-      <button type="button" class="btn btn-outline-secondary elastic-option camp" data-toggle="button" aria-pressed="false" autocomplete="off">Camp</button>
-      <button type="button" class="btn btn-outline-secondary elastic-option indoor" data-toggle="button" aria-pressed="false" autocomplete="off">Indoor</button>
-      <button type="button" class="btn btn-outline-secondary elastic-option outdoor" data-toggle="button" aria-pressed="false" autocomplete="off">Outdoor</button>
+      <% ['dropin', 'date-night', 'camp', 'indoor', 'outdoor'].each do |option| %>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input elastic-option" type="checkbox" id="<%= option %>" value="<%= option %>" data>
+            <%= option %>
+          </label>
+        </div>
+      <% end %>
+
     </div>
 
-    <div class="col-xs-12 col-md-10" style="padding-left: 80px">
+    <div class="col-xs-12 col-md-10" style="padding-left: 50px">
       <h2>Activity table - Elastic</h2>
 
-      <%= form_tag elastic_path, method: :get do %>
-        <%= text_field_tag :q, nil, placeholder: "Search", id: "elastic-search" %>
+      <%= form_tag elastic_path, method: :get, class: 'elastic-search' do %>
+        <fieldset class="form-group">
+          <label for="formGroupExampleInput">Search <%= Activity.count%> activities with Elasticsearch via searchkick</label>
+          <div class="clear"></div>
+          <div id="search-label"></div>
+          <div class="clear"></div>
+
+          <%= text_field_tag :q, nil, placeholder: "Search titles, about and tags", id: "elastic-search-input", class: "form-control ui-autocomplete-input" %>
+        </fieldset>
       <% end %>
 
       <% if @activities.suggestions.any? %>
         <p>Did you mean: <%= @activities.suggestions.first %></p>
       <% end %>
-
-      <% @activities.each do |activity| %>
-        <div>
-          <p><%= activity.title %> (<%= activity.tags.map(&:title).join(", ") %>) </p>
-        </div>
-      <% end %>
-
+      <div class="clear"></div>
+      <div class="spinner"></div>
+      <div class="clear"></div>
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th>Price</th>
+            <th colspan="2">Title</th>
+            <th class="text-xs-center">Tags</th>
+          </tr>
+        </thead>
+        <tbody class='elastic-search-result'>
+          <% @activities.each do |activity| %>
+            <tr>
+              <th scope="row"><%= activity.price %></th>
+              <td colspan="2"><%= activity.title %></td>
+              <td>
+                <%= activity.tags.map(&:title).join(', ') %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
       <%= paginate @activities %>
     </div>
   </div>

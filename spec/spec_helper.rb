@@ -89,17 +89,17 @@ end
 
 def populate_5_activities_2
   Activity.delete_all
-    5.times do |i|
-      query = (1..3).include?(i) ? "Starwars" : "Startreck"
-      about = "Master Yoda said, Do. Or do not. There is no try." if i == 3
-      bool = (2..3).include?(i) ? true : false
+  (1..5).to_a.each do |i|
+    query = (1..3).include?(i) ? "Starwars" : "Startreck"
+    about = "Master Yoda said, Do. Or do not. There is no try." if i == 3
+    bool = (2..3).include?(i) ? true : false
 
-      tag = create(:tag)
-      activity = create(:activity, title: "Searchkick #{query}", about: about, camp: bool, indoor: true)
-      location = create(:location)
+    tag = create(:tag)
+    activity = create(:activity, title: "Searchkick #{query}", about: about, camp: bool, indoor: true)
+    location = create(:location)
 
-      create(:activity_tag, tag: tag, activity: activity)
-      create(:activity_location, location: location, activity: activity)
-    end
-    Activity.reindex
+    create(:activity_tag, tag: tag, activity: activity)
+    create(:activity_location, location: location, activity: activity)
+  end
+  Activity.reindex
 end
