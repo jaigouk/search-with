@@ -16,19 +16,17 @@ gem 'bootstrap', '~> 4.0.0.alpha3.1'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
-gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
-# gem 'capistrano-rails', group: :development
 gem "ffaker"
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'web-console', group: :development
-
 gem "readthis"
 gem "kaminari"
 gem "active_model_serializers"
 
 ## Cache
+gem "redis"
+gem "hiredis"
 gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
@@ -43,8 +41,6 @@ gem 'rack-mini-profiler', require: false
 gem "bullet", :group => "development"
 
 ## scenic & materialized view
-gem "redis"
-gem "hiredis"
 gem "scenic"
 gem "textacular"
 

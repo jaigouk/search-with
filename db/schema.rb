@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804230451) do
+ActiveRecord::Schema.define(version: 20160806210324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "btree_gin"
+  enable_extension "pg_trgm"
 
   create_table "activities", force: :cascade do |t|
     t.string   "title"
@@ -28,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160804230451) do
     t.boolean  "outdoor"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["about"], name: "index_activities_on_about", using: :gin
     t.index ["camp"], name: "index_activities_on_camp", using: :btree
     t.index ["date_night"], name: "index_activities_on_date_night", using: :btree
     t.index ["drop_in"], name: "index_activities_on_drop_in", using: :btree
@@ -35,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160804230451) do
     t.index ["indoor"], name: "index_activities_on_indoor", using: :btree
     t.index ["outdoor"], name: "index_activities_on_outdoor", using: :btree
     t.index ["start_months_old"], name: "index_activities_on_start_months_old", using: :btree
+    t.index ["title"], name: "index_activities_on_title", using: :gin
   end
 
   create_table "activity_locations", force: :cascade do |t|
@@ -67,12 +71,30 @@ ActiveRecord::Schema.define(version: 20160804230451) do
     t.string   "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city"], name: "index_locations_on_city", using: :gin
+    t.index ["name"], name: "index_locations_on_name", using: :gin
   end
 
   create_table "tags", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_tags_on_title", using: :gin
   end
+
+
+  create_view :materilized_search_results,  sql_definition: <<-SQL
+      SELECT activities.id AS searchable_id,
+      'Activity'::character varying AS searchable_type,
+      activities.title AS searchable_title,
+      activities.about AS searchable_about,
+      activities.camp AS searchable_camp,
+      activities.indoor AS searchable_indoor,
+      activities.outdoor AS searchable_outdoor,
+      activities.drop_in AS searchable_drop_in,
+      activities.date_night AS searchable_date_night,
+      ((activities.title)::text || activities.about) AS the_text
+     FROM activities;
+  SQL
 
 end
