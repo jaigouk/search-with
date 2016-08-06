@@ -19,6 +19,6 @@ class HomeController < ApplicationController
   end
 
   def elastic_autocomplete
-    render json: Activity.search(search_params[:term], fields: [{title: :text_start}], limit: 5).map(&:title)
+    render json: Activity.search(q: params[:term], fields: [{title: :text_start}], limit: 5).map(&:title)
   end
 end

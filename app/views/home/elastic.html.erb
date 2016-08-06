@@ -17,14 +17,15 @@
     <div class="col-xs-12 col-md-10" style="padding-left: 50px">
       <h2>Activity table - Elastic</h2>
 
-      <%= form_tag elastic_path, method: :get, class: 'elastic-search' do %>
+      <%= form_tag elastic_path, method: :get, class: 'elastic-autocomplete' do %>
         <fieldset class="form-group">
           <label for="formGroupExampleInput">Search <%= Activity.count%> activities with Elasticsearch via searchkick</label>
           <div class="clear"></div>
           <div id="search-label"></div>
           <div class="clear"></div>
 
-          <%= text_field_tag :q, nil, placeholder: "Search titles, about and tags", id: "elastic-search-input", class: "form-control ui-autocomplete-input" %>
+          <input type="text" name="q" id="elastic-search-input" placeholder="Search titles, about and tags" class="form-control ui-autocomplete-input">
+
         </fieldset>
       <% end %>
 

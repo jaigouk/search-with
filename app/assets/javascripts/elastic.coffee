@@ -1,6 +1,6 @@
 jQuery ->
 
-  $("#elastic-search").autocomplete(
+  $("#elastic-search-input").autocomplete(
     source: "/elastic_autocomplete",
     minLength: 2
   )
