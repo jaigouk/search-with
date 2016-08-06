@@ -13,7 +13,9 @@ gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
-gem 'tether-rails'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development

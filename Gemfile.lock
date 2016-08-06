@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.0.0)
       actionpack (= 5.0.0)
@@ -221,6 +222,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0)
       sprockets-rails (>= 2.0.0)
+    rails-assets-tether (1.3.4)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
@@ -305,8 +307,6 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stackprof (0.2.9)
-    tether-rails (1.3.3)
-      rails (>= 3.1)
     textacular (4.0.0)
       activerecord (>= 3.0, <= 5.0)
     therubyracer (0.12.2)
@@ -374,6 +374,7 @@ DEPENDENCIES
   rack-cache
   rack-mini-profiler
   rails (~> 5.0.0)
+  rails-assets-tether (>= 1.1.0)!
   readthis
   redis
   rspec (= 3.5.0.beta3)
@@ -393,7 +394,6 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen
   stackprof
-  tether-rails
   textacular
   therubyracer
   tzinfo-data

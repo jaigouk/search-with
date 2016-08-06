@@ -35,3 +35,4 @@ vendor/ruby
 spec/examples.txt
 
 coverage
+public/assets
