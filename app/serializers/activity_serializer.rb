@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class ActivitySerializer < ActiveModel::Serializer
+  cache key: 'activity'
   attributes :id, :title, :about, :options,
              :price, :tags, :location,
              :start_months_old, :end_months_old

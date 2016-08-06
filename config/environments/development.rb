@@ -17,10 +17,28 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
-
     config.cache_store = :memory_store
     config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=172800'
+    }
+  elsif ENV["MEMCACHIER_SERVERS"]
+    config.action_controller.perform_caching = true
+    config.cache_store = :dalli_store
+    config.public_file_server.headers = {
+      'Cache-Control' => 'public, max-age=172800'
+    }
+
+    client = Dalli::Client.new((ENV["MEMCACHIER_SERVERS"]).split(","),
+                               :username => ENV["MEMCACHIER_USERNAME"],
+                               :password => ENV["MEMCACHIER_PASSWORD"],
+                               :failover => true,
+                               :socket_timeout => 1.5,
+                               :socket_failure_delay => 0.2,
+                               :value_max_bytes => 10485760)
+
+    config.action_dispatch.rack_cache = {
+      :metastore    => client,
+      :entitystore  => client
     }
   else
     config.action_controller.perform_caching = false

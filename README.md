@@ -22,7 +22,6 @@ rails server
 # deploy
 
 ```
-RAILS_ENV=production bundle exec rake assets:precompile
 git add .
 git commit -m "updated..."
 git push heroku master

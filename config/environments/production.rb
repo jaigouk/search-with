@@ -5,22 +5,24 @@ Rails.application.configure do
   config.cache_classes = true
   config.cache_store = :dalli_store
 
-  client = Dalli::Client.new((ENV["MEMCACHIER_SERVERS"] || "").split(","),
+  client = Dalli::Client.new((ENV["MEMCACHIER_SERVERS"]).split(","),
                              :username => ENV["MEMCACHIER_USERNAME"],
                              :password => ENV["MEMCACHIER_PASSWORD"],
                              :failover => true,
                              :socket_timeout => 1.5,
                              :socket_failure_delay => 0.2,
                              :value_max_bytes => 10485760)
+
   config.action_dispatch.rack_cache = {
     :metastore    => client,
     :entitystore  => client
   }
+  config.action_controller.perform_caching = true
 
   config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=2592000' }
   config.serve_static_assets = true
   config.assets.digest = true
-  config.action_controller.perform_caching = true
+
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -59,10 +61,6 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
-  config.log_level = :debug
-
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
@@ -91,6 +89,10 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  config.log_level = :debug
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
