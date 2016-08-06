@@ -26,6 +26,11 @@ gem "readthis"
 gem "kaminari"
 gem "active_model_serializers"
 
+## Cache
+gem 'rack-cache'
+gem 'dalli'
+gem 'kgio'
+
 ## Benchmark / Performance
 gem 'stackprof'
 gem 'memory_profiler'

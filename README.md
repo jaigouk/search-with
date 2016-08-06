@@ -1,10 +1,9 @@
 # README
 
 [![build status](https://gitlab.com/jaigouk/search-with/badges/master/build.svg)](https://gitlab.com/jaigouk/search-with/commits/master)
-[![Code Climate](https://codeclimate.com/github/jaigouk/search-with/badges/gpa.svg)](https://codeclimate.com/github/jaigouk/search-with)
 [![codebeat badge](https://codebeat.co/badges/8bb5880c-5ccf-456a-98cf-dbe65b722a95)](https://codebeat.co/projects/github-com-jaigouk-search-with)
 
-https://search-with.herokuapp.com
+https://search-with.jaigouk.com
 
 * create a very simple app that has some "activity" records with various attributes
 * a user should be able to check/uncheck boxes on the left filter panel (and/or, if we have time, to do full-text search)
@@ -23,6 +22,7 @@ rails server
 # deploy
 
 ```
+RAILS_ENV=production bundle exec rake assets:precompile
 git add .
 git commit -m "updated..."
 git push heroku master
@@ -38,7 +38,7 @@ heroku run rake searchkick:reindex:all
 - [x] db:seed
 - [x] bootstrap 4
 - [x] elastic search 
-- [ ] facets with js
+- [x] facets with js
 - [ ] setup benchmarking
 - [ ] [algolia](https://www.algolia.com)
 - [ ] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
