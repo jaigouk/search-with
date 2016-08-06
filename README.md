@@ -44,3 +44,7 @@ heroku run rake searchkick:reindex:all
 - [ ] solr & sunspot
 - [ ] add some results on the landing page with descriptions
 - [ ] [Typehead](https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md)
+
+# Etc
+
+`rails generate scenic:model recent_status --materialized`

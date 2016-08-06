@@ -4,6 +4,10 @@ class Activity < ApplicationRecord
   has_one :activity_location
   has_one :location, through: :activity_location
 
+  ## Materilized View
+  #
+  after_commit :refresh_view
+
   ## ElasticSearch - searchkick
   #
   #
@@ -54,6 +58,10 @@ class Activity < ApplicationRecord
   end
 
   private
+
+  def refresh_view
+    MaterilizedSearchResult.refresh
+  end
 
   def self.conditions(params)
     result = {}

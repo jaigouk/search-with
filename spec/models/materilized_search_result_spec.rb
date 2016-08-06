@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe MaterilizedSearchResult, type: :model do
   before(:all) do
     populate_5_activities_1
+    MaterilizedSearchResult.refresh
   end
 
   describe "#new" do
