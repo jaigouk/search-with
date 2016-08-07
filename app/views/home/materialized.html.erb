@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-12 col-md-2">
+      <% ['drop_in', 'date_night', 'camp', 'indoor', 'outdoor'].each do |option| %>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input materialized-option" type="checkbox" id="<%= option %>" value="<%= option %>" data>
+            <%= option %>
+          </label>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="col-xs-12 col-md-10" style="padding-left: 50px">
+      <h2>Activity table - materialized</h2>
+
+      <form class="materialized-autocomplete" accept-charset="UTF-8">
+        <input name="utf8" type="hidden" value="✓">
+        <fieldset class="form-group">
+          <label for="formGroupExampleInput">Search <%= Activity.count%> activities with Materializedsearch via searchkick</label>
+          <div class="clear"></div>
+          <div id="materialized-search-label"></div>
+          <div class="clear"></div>
+
+          <input type="text" name="q" id="materialized-search-input" placeholder="Search titles, about and tags" class="form-control ui-autocomplete-input">
+
+        </fieldset>
+      </form>
+
+      <div class="clear"></div>
+      <div class="spinner"></div>
+      <div class="clear"></div>
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th>Price</th>
+            <th colspan="2">Title</th>
+            <th>Options</th>
+            <th class="text-xs-center">Tags</th>
+          </tr>
+        </thead>
+        <tbody class='materialized-search-result'>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

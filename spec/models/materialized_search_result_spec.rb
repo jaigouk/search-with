@@ -15,12 +15,13 @@ RSpec.describe MaterializedSearchResult, type: :model do
     end
 
     it "search results with given boolean options" do
-      result = MaterializedSearchResult.new("searchkick", {camp: true})
+      result = MaterializedSearchResult.new("",{camp: true})
       result.each do |t|
         expect(t.title.include? "Searchkick").to be_truthy
         expect(t.camp).to be_truthy
       end
     end
+
   end
 
   describe 'scopes' do

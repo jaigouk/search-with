@@ -29,6 +29,9 @@ git push heroku master
 heroku run rake db:migrate
 heroku run rake db:seed
 heroku run rake searchkick:reindex:all
+heroku run rake materialized:refresh
+heroku run rake materialized:clear_suggestions
+heroku run rake materialized:seed_suggestions
 ```
 
 # todo

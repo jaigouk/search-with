@@ -16,8 +16,9 @@ class MaterializedSearchResult < ApplicationRecord
   # across searchable models
   def self.new(query, options = {})
     query = query.to_s
-    return [] if query.empty?
-    return self.search(query).map(&:searchable) if options == {}
+    return [] if query.empty? && options.empty?
+    return self.search(prefix_searchable(options)).map(&:searchable) if query.empty? && !options.empty?
+    return self.search(query).map(&:searchable) if !query.empty? && options.empty?
 
     self.search(query).search(prefix_searchable(options)).map(&:searchable)
   end

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-12 col-md-2">
+      <% ['drop_in', 'date_night', 'camp', 'indoor', 'outdoor'].each do |option| %>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input solr-option" type="checkbox" id="<%= option %>" value="<%= option %>" data>
+            <%= option %>
+          </label>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="col-xs-12 col-md-10" style="padding-left: 50px">
+      <h2>Activity table - solr</h2>
+
+      <%= form_tag solr_path, method: :get, class: 'solr-autocomplete' do %>
+        <fieldset class="form-group">
+          <label for="formGroupExampleInput">Search <%= Activity.count%> activities via Solr</label>
+          <div class="clear"></div>
+          <div id="search-label"></div>
+          <div class="clear"></div>
+
+          <input type="text" name="q" id="solr-search-input" placeholder="Search titles, about and tags" class="form-control ui-autocomplete-input">
+
+        </fieldset>
+      <% end %>
+
+
+      <div class="clear"></div>
+      <div class="spinner"></div>
+      <div class="clear"></div>
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th>Price</th>
+            <th colspan="2">Title</th>
+            <th>Options</th>
+            <th class="text-xs-center">Tags</th>
+          </tr>
+        </thead>
+        <tbody class='solr-search-result'>
+          <% @activities.each do |activity| %>
+            <tr>
+              <th scope="row"><%= activity.price %></th>
+              <td colspan="2"><%= activity.title %></td>
+              <td ><%= activity.options.join(', ') %></td>
+              <td>
+                <%= activity.tags.map(&:title).join(', ') %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @activities %>
+    </div>
+  </div>
+</div>

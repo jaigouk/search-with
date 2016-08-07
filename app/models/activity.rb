@@ -33,6 +33,7 @@ class Activity < ApplicationRecord
     page = params[:page].presence || 1
     per_page = params[:per_page].presence || 10
     con = conditions(params)
+
     activities = case type
       when :elastic
         self.elastic_search(query, con, page, per_page)
@@ -54,7 +55,8 @@ class Activity < ApplicationRecord
   end
 
   def self.materialized_search(query, conditions, page, per_page)
-    result = MaterializedSearchResult.new(query, conditions)
+    keyword = (query == "*") ? "" : query
+    result = MaterializedSearchResult.new(keyword, conditions)
     Kaminari.paginate_array(result).page(page).per(per_page)
   end
 
