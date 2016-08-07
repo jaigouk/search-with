@@ -28,7 +28,7 @@ class Activity < ApplicationRecord
     }
   end
 
-  def self.facets_search(params, type = :elastic)
+  def self.facets_search(params, type)
     query = params[:q].presence || "*"
     page = params[:page].presence || 1
     per_page = params[:per_page].presence || 10
@@ -46,7 +46,7 @@ class Activity < ApplicationRecord
   def self.elastic_search(query, conditions, page, per_page)
     Activity.search(query,
       where: conditions,
-      aggs: activity_options,
+      aggs: self.activity_options(),
       suggest: true,
       page: page,
       per_page: per_page,

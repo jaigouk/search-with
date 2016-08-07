@@ -50,11 +50,10 @@ jQuery ->
     )
 
 
-  searchReady = ->
-
+  MaterializedSearchReady = ->
     getMaterializedScopeResult(['camp'])
 
-    $('form').submit (e) ->
+    $('.materialized-autocomplete').submit (e) ->
       e.preventDefault()
       getMaterializedScopeResult(materialized_search_list)
       return false
@@ -65,7 +64,6 @@ jQuery ->
         materialized_search_list.push(checkbox.val())
       else
         materialized_search_list.pop(checkbox.val())
-      # console.log("%% after this: #{materialized_search_list.join(', ')}" )
       getMaterializedScopeResult(materialized_search_list)
     )
 
@@ -78,9 +76,7 @@ jQuery ->
           queryBox.val ui.item.value
           event.preventDefault()
           getMaterializedScopeResult(ui.item.value)
-
-
     # end of searchReady
     return
-  searchReady()
+  MaterializedSearchReady()
 

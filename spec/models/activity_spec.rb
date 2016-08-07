@@ -19,16 +19,16 @@ RSpec.describe Activity, type: :model do
 
   describe 'self.facets_search' do
     it 'returns search results with query param' do
-      expect(Activity.facets_search({q: "searchkick"}).count).to eq 5
+      expect(Activity.facets_search({q: "searchkick"}, :elastic).count).to eq 5
     end
 
     it 'returns search results with page param' do
-      expect(Activity.facets_search({q: "searchkick", page: 1, per_page: 2}).count).to eq 2
+      expect(Activity.facets_search({q: "searchkick", page: 1, per_page: 2}, :elastic).count).to eq 2
     end
 
     it 'returns search results with facets' do
-      falses = Activity.facets_search({q: "searchkick", camp: "false"})
-      trues = Activity.facets_search({q: "searchkick", camp: "true"})
+      falses = Activity.facets_search({q: "searchkick", camp: "false"}, :elastic)
+      trues = Activity.facets_search({q: "searchkick", camp: "true"}, :elastic)
       expect(falses.count).to eq 2
       expect(trues.count).to eq 3
     end
