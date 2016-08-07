@@ -15,18 +15,9 @@ class HomeController < ApplicationController
   end
 
   def solr
-    @activities = Activity.search do
-      with :date_night, true if params.has_key?(:date_night)
-      with :drop_in, true if params.has_key?(:drop_in)
-      with :camp, true if params.has_key?(:camp)
-      with :outdoor, true if params.has_key?(:outdoor)
-      with :indoor, true if params.has_key?(:indoor)
-      fulltext params[:term]
-    end.results
-      
+    solr_search = GetFacetsSearchResults.new(:solr)
+    @activities = solr_search.call(params)
     render_results(@activities)
-    # @activities = Kaminari.paginate_array([Activity.first]).page(1).per(20)
-    # render_results(@activities)
   end
 
   def algolia
