@@ -34,7 +34,9 @@ gem 'kgio'
 ## Benchmark / Performance
 gem 'stackprof'
 gem 'memory_profiler'
-gem 'derailed_benchmarks', group: :development
+# gem 'kalibera', require: false
+gem 'benchmark-ips', '~> 2.6.1'
+gem 'derailed_benchmarks', '~> 1.3'
 gem 'mime-types', [ '~> 2.6', '>= 2.6.1' ], require: 'mime/types/columnar'
 gem "flamegraph"
 gem 'rack-mini-profiler', require: false
