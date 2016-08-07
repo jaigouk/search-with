@@ -16,6 +16,7 @@ https://search-with.jaigouk.com
 bundle install
 rake db:setup
 rake db:seed
+bundle exec rake sunspot:solr:start
 rails server
 ```
 

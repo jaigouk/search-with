@@ -29,6 +29,16 @@ class Activity < ApplicationRecord
     }
   end
 
+  ## for solr
+  searchable do
+    text :title
+    boolean :drop_in
+    boolean :camp
+    boolean :date_night
+    boolean :indoor
+    boolean :outdoor
+  end
+
   def options
     options = []
     [:camp ,:drop_in, :date_night, :indoor, :outdoor].each{|x| options << x.to_s if send(x) }

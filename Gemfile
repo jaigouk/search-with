@@ -12,6 +12,7 @@ gem 'therubyracer', platforms: :ruby
 gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'sunspot_rails'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
@@ -54,6 +55,8 @@ group :development, :test do
   gem "database_cleaner"
   gem "generator_spec"
   gem "launchy"
+
+  gem 'sunspot_solr'
 
   gem "pry"
   gem "pry-doc"
