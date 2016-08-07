@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
 
 	def index
-		## filtering goes here
+		@benchmark = BenchMarkData.last
 	end
+
+  def benchmark
+
+  end
 
   def elastic
     elastic_search = GetFacetsSearchResults.new(:elastic)

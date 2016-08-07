@@ -25,6 +25,7 @@ RSpec.describe GetFacetsSearchResults do
       expect(benchmark[:entries].size).to eq 2
       expect(benchmark[:result].include? 'Materialized View').to be_truthy
       expect(benchmark[:result].include? 'ElasticSeach').to be_truthy
+      expect(benchmark[:data].size).to eq 2
     end
   end
 end

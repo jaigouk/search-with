@@ -79,4 +79,3 @@ jQuery ->
     # end of searchReady
     return
   MaterializedSearchReady()
-

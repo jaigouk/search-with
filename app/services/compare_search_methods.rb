@@ -13,23 +13,25 @@ class CompareSearchMethods < BaseService
   end
 
   def call(params:, time:, warmup:)
-    compare = Benchmark.ips do |x|
+    compare = run_bench_mark(params, time, warmup)
+
+    compare.entries.each {|d| @entries << d.to_s.strip }
+    final_result = Capture.capture do
+      compare.run_comparison
+    end
+
+    { entries: @entries, result: final_result.stdout, data: compare.data.as_json }
+  end
+
+  private
+
+  def run_bench_mark(params, time, warmup)
+    Benchmark.ips do |x|
       x.time = time
       x.warmup = warmup
       x.report("ElasticSeach") { @elastic.call(params) }
       x.report("Materialized View") { @materialized.call(params) }
       x.compare!
     end
-
-    compare.entries.each {|d| @entries << d.to_s }
-    final_result = Capture.capture do
-      compare.run_comparison
-    end
-
-    { entries: @entries, result: final_result.stdout }
   end
-
-  private
-
-
 end

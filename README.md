@@ -42,12 +42,14 @@ heroku run rake materialized:seed_suggestions
 - [x] bootstrap 4
 - [x] elastic search 
 - [x] facets with js
-- [ ] setup benchmarking
-- [ ] [algolia](https://www.algolia.com)
+- [x] setup benchmarking
 - [x] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
+- [x] add some results on the landing page with descriptions
+- [ ] show memory info
+- [ ] [algolia](https://www.algolia.com)
 - [ ] solr & sunspot
-- [ ] add some results on the landing page with descriptions
-- [ ] [Typehead](https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md)
+- [ ] use [dry-rb](http://dry-rb.org/)
+- [ ] reactfy (also fix pagination)
 
 # Etc
 

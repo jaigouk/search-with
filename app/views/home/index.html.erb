@@ -8,6 +8,14 @@
   <a href="https://codebeat.co/projects/github-com-jaigouk-search-with" class="badge">
     <img alt="codebeat badge" src="https://codebeat.co/badges/8bb5880c-5ccf-456a-98cf-dbe65b722a95" style="height: 20px;"/>
   </a>
+  <br/>
+  <br/>
+  <h4>Motivation</h4>
+  Because I wanted to know the basic heroku dyno's performance.
+
+  <br/>
+  <br/>
+  <h4>Description</h4>
 
 	<ul>
 		<li>create a very simple app that has some "activity" records with various attributes</li>
@@ -16,45 +24,15 @@
 		<li>benchmarking data for using famous search methods</li>
 	</ul>
 
-	<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Method</th>
-      <th>Gem</th>
-      <th>Addon</th>
-      <th>Mean Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Elastic Search</td>
-      <td>Searchkick</td>
-      <td>Bonsai</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Solr</td>
-      <td>Sunspot</td>
-      <td>Websolr</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Algolia</td>
-      <td>Algolia</td>
-      <td>Algolia</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>Materialized View with Redis</td>
-      <td>Scenic, Hiredis</td>
-      <td>Rediscloud</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
+  <h4>Result</h4>
+  <% if @benchmark %>
+    <pre class="language-bash">
+      <code class="language-bash">
+        <% @benchmark.entries.each do |entry| %>
+        <%= entry.strip %><br/>
+        <% end %>
+        <%= @benchmark.result %>
+      </code>
+    </pre>
+    <% end %>
 </div>

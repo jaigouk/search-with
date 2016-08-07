@@ -1,0 +1,2 @@
+class BenchMarkData < ApplicationRecord
+end
