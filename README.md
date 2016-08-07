@@ -43,7 +43,7 @@ heroku run rake materialized:seed_suggestions
 - [x] facets with js
 - [ ] setup benchmarking
 - [ ] [algolia](https://www.algolia.com)
-- [ ] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
+- [x] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
 - [ ] solr & sunspot
 - [ ] add some results on the landing page with descriptions
 - [ ] [Typehead](https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md)

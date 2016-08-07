@@ -52,6 +52,7 @@ jQuery ->
 
   searchReady = ->
 
+    getMaterializedScopeResult(['camp'])
 
     $('form').submit (e) ->
       e.preventDefault()

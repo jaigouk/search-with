@@ -1,7 +1,7 @@
 namespace :materialized do
   desc 'Refresh materialized_vew'
   task refresh: :environment do
-    MaterializedSearchResult.refresh
+    MaterializedSearchResult.refresh()
   end
 
   desc 'Generate search suggestions'
