@@ -12,7 +12,7 @@ https://search-with.jaigouk.com
 
 # setup
 
-```
+```bash
 bundle install
 rake db:setup
 rake db:seed
@@ -22,7 +22,7 @@ rails server
 
 # deploy
 
-```
+```bash
 git add .
 git commit -m "updated..."
 git push heroku master
@@ -34,6 +34,19 @@ heroku run rake materialized:refresh
 heroku run rake materialized:clear_suggestions
 heroku run rake materialized:seed_suggestions
 ```
+
+# Generating benchmark data (console for now)
+
+```ruby
+params = {q: "Bubbles", camp: "false", page: 1, per_page: 5}
+
+comparison = CompareSearchMethods.new()
+bench_mark_data_param = comparison.call(params: params, time: 5, warmup: 2)
+
+save_bench_mark_data = SaveBenchMarkData.new()
+save_bench_mark_data.call(bench_mark_data_param)
+```
+
 
 # todo
 
@@ -54,3 +67,4 @@ heroku run rake materialized:seed_suggestions
 # Etc
 
 `rails generate scenic:model recent_status --materialized`
+
