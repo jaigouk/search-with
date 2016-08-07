@@ -35,29 +35,29 @@ RSpec.describe GetFacetsSearchResults do
     end
   end
 
-  describe 'self.call' do
-    it 'returns search results with params' do
-      expect(@elastic.call(params).size).to eq 2
-      expect(@elastic.call(camp_true_params).size).to eq 3
-      expect(@elastic.call(no_result_params).size).to eq 0
-    end
+  # describe 'self.call' do
+  #   it 'returns search results with params' do
+  #     expect(@elastic.call(params).size).to eq 2
+  #     expect(@elastic.call(camp_true_params).size).to eq 3
+  #     expect(@elastic.call(no_result_params).size).to eq 0
+  #   end
 
-    it 'returns the same resuls for any search methods with same params' do
-      expect(@elastic.call(params).size).to eq 2
-      expect(@elastic.call(camp_true_params).size).to eq 3
-      expect(@elastic.call(no_result_params).size).to eq 0
+  #   it 'returns the same resuls for any search methods with same params' do
+  #     expect(@elastic.call(params).size).to eq 2
+  #     expect(@elastic.call(camp_true_params).size).to eq 3
+  #     expect(@elastic.call(no_result_params).size).to eq 0
 
-      expect(@materialized.call(params).size).to eq 2
-      expect(@materialized.call(camp_true_params).size).to eq 3
-      expect(@materialized.call(no_result_params).size).to eq 0
-    end
+  #     expect(@materialized.call(params).size).to eq 2
+  #     expect(@materialized.call(camp_true_params).size).to eq 3
+  #     expect(@materialized.call(no_result_params).size).to eq 0
+  #   end
 
-    it 'returns paginated results' do
-      expect(@elastic.call(per_page_2_params_page_1).size).to eq 2
-      expect(@elastic.call(per_page_2_params_page_2).size).to eq 1
+  #   it 'returns paginated results' do
+  #     expect(@elastic.call(per_page_2_params_page_1).size).to eq 2
+  #     expect(@elastic.call(per_page_2_params_page_2).size).to eq 1
 
-      expect(@materialized.call(per_page_2_params_page_1).size).to eq 2
-      expect(@materialized.call(per_page_2_params_page_2).size).to eq 1
-    end
-  end
+  #     expect(@materialized.call(per_page_2_params_page_1).size).to eq 2
+  #     expect(@materialized.call(per_page_2_params_page_2).size).to eq 1
+  #   end
+  # end
 end

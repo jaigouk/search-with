@@ -57,10 +57,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV['POSTGRES_DB'] || 'jaigouk_test' %>
-  host: <%= ENV['POSTGRES_HOST'] || 'localhost' %>
-  username: <%= ENV['POSTGRES_USER'] || 'postgres' %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: jaigouk_test
+
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.

@@ -1,6 +1,6 @@
-# README
+# Benchmarking Search Options for Rails 5
 
-[![build status](https://gitlab.com/jaigouk/search-with/badges/master/build.svg)](https://gitlab.com/jaigouk/search-with/commits/master)
+[![CircleCI](https://img.shields.io/circleci/project/jaigouk/search-with.svg)](https://circleci.com/gh/jaigouk/search-with)
 [![codebeat badge](https://codebeat.co/badges/8bb5880c-5ccf-456a-98cf-dbe65b722a95)](https://codebeat.co/projects/github-com-jaigouk-search-with)
 
 https://search-with.jaigouk.com
