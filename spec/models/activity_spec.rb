@@ -17,35 +17,6 @@ RSpec.describe Activity, type: :model do
     it { should have_one(:location).through(:activity_location) }
   end
 
-  describe 'self.facets_search' do
-    it 'returns search results with query param' do
-      expect(Activity.facets_search({q: "searchkick"}, :elastic).count).to eq 5
-    end
-
-    it 'returns search results with page param' do
-      expect(Activity.facets_search({q: "searchkick", page: 1, per_page: 2}, :elastic).count).to eq 2
-    end
-
-    it 'returns search results with facets' do
-      falses = Activity.facets_search({q: "searchkick", camp: "false"}, :elastic)
-      trues = Activity.facets_search({q: "searchkick", camp: "true"}, :elastic)
-      expect(falses.count).to eq 2
-      expect(trues.count).to eq 3
-    end
-
-    it 'returns search results with materialized view' do
-      expect(Activity.facets_search({q: "searchkick"}, :materialized).count).to eq 5
-    end
-
-    it 'returns search results for materialized view with conditions' do
-      expect(Activity.facets_search({q: "searchkick", camp: "false"}, :materialized).count).to eq 2
-    end
-
-    it 'returns paginated results for materialized view with page params' do
-      expect(Activity.facets_search({q: "searchkick", page: 1, per_page: 1}, :materialized).count).to eq 1
-    end
-  end
-
   describe 'options' do
     it 'returns options array that are enabled' do
       act = create(:activity, camp: false, outdoor: false, indoor: false,

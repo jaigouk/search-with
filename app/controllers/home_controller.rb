@@ -5,7 +5,8 @@ class HomeController < ApplicationController
 	end
 
   def elastic
-    @activities = Activity.facets_search(params, :elastic)
+    elastic_search = GetFacetsSearchResults.new(:elastic)
+    @activities = elastic_search.call(params)
     render_results(@activities)
   end
 
@@ -24,7 +25,8 @@ class HomeController < ApplicationController
   end
 
   def materialized
-    @activities = Activity.facets_search(params, :materialized)
+    materialized_search = GetFacetsSearchResults.new(:materialized)
+    @activities = materialized_search.call(params)
     render_results(@activities)
   end
 

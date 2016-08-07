@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Activity < ApplicationRecord
 	has_many :activity_tags
   has_many :tags, through: :activity_tags
@@ -28,67 +29,15 @@ class Activity < ApplicationRecord
     }
   end
 
-  def self.facets_search(params, type)
-    query = params[:q].presence || "*"
-    page = params[:page].presence || 1
-    per_page = params[:per_page].presence || 10
-    con = conditions(params)
-
-    activities = case type
-      when :elastic
-        self.elastic_search(query, con, page, per_page)
-      when :materialized
-        self.materialized_search(query, con, page, per_page)
-      end
-    activities
-  end
-
-  def self.elastic_search(query, conditions, page, per_page)
-    Activity.search(query,
-      where: conditions,
-      aggs: self.activity_options(),
-      suggest: true,
-      page: page,
-      per_page: per_page,
-      include: [:tags, :location]
-    )
-  end
-
-  def self.materialized_search(query, conditions, page, per_page)
-    keyword = (query == "*") ? "" : query
-    result = MaterializedSearchResult.new(keyword, conditions)
-    Kaminari.paginate_array(result).page(page).per(per_page)
-  end
-
-  def self.activity_options
-    [:camp ,:drop_in, :date_night, :indoor, :outdoor]
-  end
-
   def options
     options = []
     [:camp ,:drop_in, :date_night, :indoor, :outdoor].each{|x| options << x.to_s if send(x) }
     options
   end
 
-  private
+private
 
   def refresh_view
      MaterializedSearchResult.refresh
-  end
-
-  def self.conditions(params)
-    result = {}
-
-    self.activity_options.each do |option|
-      if params[option].present?
-        result[option] = cast_boolean(params[option])
-      end
-    end
-    result
-  end
-
-  def self.cast_boolean(str)
-    return true if str.is_a?(String) && str.downcase == "true"
-    return false if str.is_a?(String) && str.downcase == "false"
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'textacular/searchable'
 class MaterializedSearchResult < ApplicationRecord
   extend Textacular
