@@ -1,5 +1,5 @@
 # require 'textacular/searchable'
-class MaterilizedSearchResult < ApplicationRecord
+class MaterializedSearchResult < ApplicationRecord
   extend Textacular
   # extend Searchable(:title, :about)
 
@@ -19,7 +19,7 @@ class MaterilizedSearchResult < ApplicationRecord
     return [] if query.empty?
     return self.search(query).map(&:searchable) if options == {}
 
-    self.search(query).search(options).map(&:searchable)
+    self.search(query).search(prefix_searchable(options)).map(&:searchable)
   end
 
   # Search records are never modified
@@ -37,5 +37,11 @@ class MaterilizedSearchResult < ApplicationRecord
 
   def self.refresh
     Scenic.database.refresh_materialized_view(table_name, concurrently: false)
+  end
+
+  private
+
+  def self.prefix_searchable(options)
+    options.transform_keys{|k| "searchable_#{k.to_s}".to_sym }
   end
 end

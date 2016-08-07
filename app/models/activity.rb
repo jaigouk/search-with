@@ -4,17 +4,15 @@ class Activity < ApplicationRecord
   has_one :activity_location
   has_one :location, through: :activity_location
 
-  ## Materilized View
-  #
+  ## for Materilized View
   after_commit :refresh_view
 
-  ## ElasticSearch - searchkick
-  #
-  #
+  ## for ElasticSearch - searchkick
   searchkick text_start: [:title],
              suggest: [:title],
              settings: {index: {max_result_window: 10000}}
 
+  ## for ElasticSearch - searchkick
   def search_data
     {
       title: title,
@@ -30,21 +28,34 @@ class Activity < ApplicationRecord
     }
   end
 
-
-  def self.facets_search(params)
+  def self.facets_search(params, type = :elastic)
     query = params[:q].presence || "*"
     page = params[:page].presence || 1
     per_page = params[:per_page].presence || 10
     con = conditions(params)
-    activities = Activity.search(query,
-      where: con,
+    activities = case type
+      when :elastic
+        self.elastic_search(query, con, page, per_page)
+      when :materialized
+        self.materialized_search(query, con, page, per_page)
+      end
+    activities
+  end
+
+  def self.elastic_search(query, conditions, page, per_page)
+    Activity.search(query,
+      where: conditions,
       aggs: activity_options,
       suggest: true,
       page: page,
       per_page: per_page,
       include: [:tags, :location]
     )
-    activities
+  end
+
+  def self.materialized_search(query, conditions, page, per_page)
+    result = MaterializedSearchResult.new(query, conditions)
+    Kaminari.paginate_array(result).page(page).per(per_page)
   end
 
   def self.activity_options
@@ -60,7 +71,7 @@ class Activity < ApplicationRecord
   private
 
   def refresh_view
-    MaterilizedSearchResult.refresh
+     MaterializedSearchResult.refresh
   end
 
   def self.conditions(params)

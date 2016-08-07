@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20160806210324) do
   end
 
 
-  create_view :materilized_search_results, materialized: true,  sql_definition: <<-SQL
+  create_view :materialized_search_results, materialized: true,  sql_definition: <<-SQL
       SELECT activities.id AS searchable_id,
       'Activity'::character varying AS searchable_type,
       activities.title AS searchable_title,
