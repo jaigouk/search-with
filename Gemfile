@@ -38,7 +38,7 @@ gem 'memory_profiler'
 # gem 'kalibera', require: false
 gem 'benchmark-ips', '~> 2.6.1'
 gem 'derailed_benchmarks', '~> 1.3'
-gem 'mime-types', [ '~> 2.6', '>= 2.6.1' ], require: 'mime/types/columnar'
+gem 'mime-types'
 gem "flamegraph"
 gem 'rack-mini-profiler', require: false
 gem "bullet", :group => "development"
@@ -80,6 +80,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'simplecov', :require => false
+  gem 'codacy-coverage', :require => false
   gem "rspec", "= 3.5.0.beta3"
   gem "rspec-core", "= 3.5.0.beta3"
   gem "rspec-expectations", "= 3.5.0.beta3"

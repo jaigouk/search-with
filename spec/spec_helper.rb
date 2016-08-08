@@ -3,6 +3,15 @@ require File.expand_path('../../config/environment', __FILE__)
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
+if ENV['RUN_ON_CI'] == true
+  require 'simplecov'
+  SimpleCov.start 'rails'
+  puts "required simplecov"
+  require 'codacy-coverage'
+  Codacy::Reporter.start
+  puts "required codacy-coverage"
+end
+
 require 'spec_helper'
 require 'rspec/rails'
 require 'sunspot/rails/spec_helper'

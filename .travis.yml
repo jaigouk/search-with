@@ -1,0 +1,13 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.3.1
+services:
+  - postgresql
+  - redis-server
+  - elasticsearch
+script: bundle exec rake rspec
+env:
+  global:
+    secure: KLu

@@ -2,6 +2,8 @@
 
 [![CircleCI](https://img.shields.io/circleci/project/jaigouk/search-with.svg)](https://circleci.com/gh/jaigouk/search-with)
 [![codebeat badge](https://codebeat.co/badges/8bb5880c-5ccf-456a-98cf-dbe65b722a95)](https://codebeat.co/projects/github-com-jaigouk-search-with)
+[![codacy badge](https://img.shields.io/codacy/grade/646e5d50e84d4f97ada49a381ba61d16.svg)](https://www.codacy.com/app/jaigouk/search-with)
+[![codacy coverage badge](https://img.shields.io/codacy/coverage/646e5d50e84d4f97ada49a381ba61d16.svg)](www.codacy.com/app/jaigouk/search-with)
 
 https://search-with.jaigouk.com
 
@@ -12,6 +14,8 @@ https://search-with.jaigouk.com
 
 # setup
 
+on local machine, create `.env` file and add `RUN_LOCAL=true`
+
 ```bash
 bundle install
 rake db:setup
@@ -19,6 +23,7 @@ rake db:seed
 bundle exec rake sunspot:solr:start
 rails server
 ```
+
 
 # deploy
 
@@ -58,6 +63,8 @@ save_bench_mark_data.call(bench_mark_data_param)
 - [x] setup benchmarking
 - [x] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
 - [x] add some results on the landing page with descriptions
+
+- [ ] make save_bench_mark_data to accept params like `elastic vs solr`
 - [ ] show memory info
 - [ ] [algolia](https://www.algolia.com)
 - [ ] solr & sunspot
