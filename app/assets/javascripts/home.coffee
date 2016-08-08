@@ -14,6 +14,7 @@ jQuery ->
         <code class='language-bash'>
           #{result.entries[0]}&#13;&#10;
           #{result.entries[1]}&#13;&#10;
+          #{result.entries[2]}&#13;&#10;
           &#13;&#10;
           #{result.result}
         </code>
