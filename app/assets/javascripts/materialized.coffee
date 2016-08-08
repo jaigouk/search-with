@@ -28,7 +28,6 @@ jQuery ->
           <div class='card-columns search-result'>
           </div>"
         )
-      console.log result.data
       # $('#materialized-search-label').replaceWith("
       #   <div id='materialized-search-label'
       #    data-keyword='#{query}'

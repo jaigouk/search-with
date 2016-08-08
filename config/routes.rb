@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   get  "materialized" => "home#materialized"
   get  "materialized_autocomplete" => "home#materialized_autocomplete"
+
+  get  "benchmark" => "home#benchmark"
 end
