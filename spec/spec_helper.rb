@@ -3,7 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
-if ENV['RUN_ON_CI'] == true
+if ENV['CODACY_PROJECT_TOKEN']
   require 'simplecov'
   SimpleCov.start 'rails'
   puts "required simplecov"

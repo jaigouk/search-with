@@ -41,9 +41,7 @@ class MaterializedSearchResult < ApplicationRecord
     Scenic.database.refresh_materialized_view(table_name, concurrently: false)
   end
 
-  private
-
   def self.prefix_searchable(options)
-    options.transform_keys{|k| "searchable_#{k.to_s}".to_sym }
+    options.transform_keys{|k| "searchable_#{k}".to_sym }
   end
 end

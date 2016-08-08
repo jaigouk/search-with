@@ -3,11 +3,25 @@ language: ruby
 cache: bundler
 rvm:
   - 2.3.1
+addons:
+  postgresql: "9.4"
 services:
   - postgresql
   - redis-server
   - elasticsearch
-script: bundle exec rake rspec
 env:
   global:
-    secure: KLu
+    REDIS_URL: redis://localhost:6379/1
+    ELASTICSEARCH_URL: http://localhost:9200
+bundler_args: --jobs=2
+cache: bundler
+
+script:
+  - bundle install
+  - bin/rails sunspot:solr:start RAILS_ENV=test
+  - bin/rails db:create RAILS_ENV=test
+  - bin/rails db:migrate RAILS_ENV=test
+  - bin/rspec --color --require spec_helper
+  - gem install bundler-audit
+  - bundle-audit update
+  - bundle-audit check

@@ -14,8 +14,6 @@ https://search-with.jaigouk.com
 
 # setup
 
-on local machine, create `.env` file and add `RUN_LOCAL=true`
-
 ```bash
 bundle install
 rake db:setup
