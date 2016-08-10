@@ -25,7 +25,3 @@ script:
   - gem install bundler-audit
   - bundle-audit update
   - bundle-audit check
-deploy:
-  provider: heroku
-  api_key: HEROKU_API_KEY
-  run: "bin/rails search_index:refresh"
