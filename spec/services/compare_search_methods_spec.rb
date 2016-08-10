@@ -23,7 +23,7 @@ RSpec.describe GetFacetsSearchResults do
     it 'returns benchmarking results' do
       benchmark = @benchmark.call(params: params, time: 5, warmup: 2)
       expect(benchmark[:entries].size).to eq 4
-      expect(benchmark[:result].include? 'Materialized View').to be_truthy
+      expect(benchmark[:result].include? 'Materialized').to be_truthy
       expect(benchmark[:result].include? 'ElasticSeach').to be_truthy
       expect(benchmark[:data].size).to eq 2
     end
