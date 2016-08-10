@@ -4,7 +4,7 @@ require_relative '../../lib/benchmark_ips_extension'
 require_relative '../../lib/capture_stdout'
 
 class CompareSearchMethods < BaseService
-  attr_reader :elastic, :materialized, :solr
+  attr_reader :elastic, :materialized, :solr, :algolia
 
   def initialize()
     @elastic = GetFacetsSearchResults.new(:elastic)
