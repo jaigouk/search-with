@@ -14,4 +14,5 @@
 //= require jquery-ui
 //= require tether
 //= require bootstrap
+//= require algolia/v3/algoliasearch.min
 //= require_tree .

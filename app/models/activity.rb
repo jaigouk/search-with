@@ -24,8 +24,7 @@ class Activity < ApplicationRecord
       drop_in: drop_in,
       date_night: date_night,
       indoor: indoor,
-      outdoor: outdoor,
-      tags: tags.map(&:title)
+      outdoor: outdoor
     }
   end
 
@@ -37,6 +36,12 @@ class Activity < ApplicationRecord
     boolean :date_night
     boolean :indoor
     boolean :outdoor
+  end
+
+  include AlgoliaSearch
+  ## for algolia
+  algoliasearch do
+    attribute :title, :drop_in, :camp, :date_night, :indoor, :outdoor
   end
 
   def options

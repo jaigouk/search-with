@@ -50,6 +50,9 @@ gem "textacular"
 ## searchkick
 gem 'searchkick'
 
+## algolia
+gem "algoliasearch-rails"
+
 group :development, :test do
   gem 'dotenv-rails'
   gem "database_cleaner"

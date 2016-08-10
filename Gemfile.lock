@@ -45,6 +45,12 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    algoliasearch (1.10.0)
+      httpclient (~> 2.7.1)
+      json (>= 1.5.1)
+    algoliasearch-rails (1.14.1)
+      algoliasearch (>= 1.2.14)
+      json (>= 1.5.1)
     arel (7.1.1)
     autoprefixer-rails (6.4.0.1)
       execjs
@@ -141,6 +147,7 @@ GEM
     hashie (3.4.4)
     heapy (0.1.2)
     hiredis (0.6.1)
+    httpclient (2.7.2)
     i18n (0.7.0)
     interception (0.5)
     jquery-rails (4.1.1)
@@ -347,6 +354,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  algoliasearch-rails
   bcrypt (~> 3.1.7)
   benchmark-ips (~> 2.6.1)
   bootstrap (~> 4.0.0.alpha3.1)

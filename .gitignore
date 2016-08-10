@@ -5,6 +5,10 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 
+solr/development
+solr/development/*
+solr/development/*.pid
+solr/pids/development
 solr/test
 solr/pids/test
 

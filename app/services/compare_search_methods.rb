@@ -10,6 +10,7 @@ class CompareSearchMethods < BaseService
     @elastic = GetFacetsSearchResults.new(:elastic)
     @materialized = GetFacetsSearchResults.new(:materialized)
     @solr = GetFacetsSearchResults.new(:solr)
+    @algolia = GetFacetsSearchResults.new(:algolia)
     @entries = []
   end
 
@@ -31,8 +32,9 @@ class CompareSearchMethods < BaseService
       x.time = time
       x.warmup = warmup
       x.report("ElasticSeach") { @elastic.call(params) }
-      x.report("Materialized View") { @materialized.call(params) }
+      x.report("Materialized") { @materialized.call(params) }
       x.report("Solr") { @solr.call(params) }
+      x.report("Algolia") { @algolia.call(params) }
       x.compare!
     end
   end

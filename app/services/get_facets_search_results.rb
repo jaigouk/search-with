@@ -18,6 +18,8 @@ class GetFacetsSearchResults < BaseService
       materialized_search(params)
     when :solr
       solr_search(params)
+    when :algolia
+      algolia_search(params)
     end
   end
 
@@ -44,7 +46,14 @@ private
       with :outdoor, true if params.has_key?(:outdoor)
       with :indoor, true if params.has_key?(:indoor)
       fulltext params[:term] if params[:term].present?
+      fulltext params[:q] if params[:q].present?
     end.results
+  end
+
+  def algolia_search(params)
+    Activity.algolia_search(params[:q],
+      page: page(params),hitsPerPage: per_page(params)
+    )
   end
 
   def query_for_materialized(params)

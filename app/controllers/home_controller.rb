@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	end
 
   def benchmark
-    params = {q: Activity.first.title, camp: "false", page: 1, per_page: 5}
+    params = {q: Activity.first.title.split(' ').first, camp: "false", page: 1, per_page: 5}
 
     comparison = CompareSearchMethods.new()
     bench_mark_data_param = comparison.call(params: params, time: 5, warmup: 2)
@@ -34,7 +34,7 @@ class HomeController < ApplicationController
   end
 
   def algolia
-    @activities = Kaminari.paginate_array([Activity.first]).page(1).per(20)
+    @activities = GetFacetsSearchResults.new(:algolia)
     render_results(@activities)
   end
 
