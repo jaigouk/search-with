@@ -25,7 +25,9 @@ RSpec.describe GetFacetsSearchResults do
       expect(benchmark[:entries].size).to eq 4
       expect(benchmark[:result].include? 'Materialized').to be_truthy
       expect(benchmark[:result].include? 'ElasticSeach').to be_truthy
-      expect(benchmark[:data].size).to eq 2
+      expect(benchmark[:data].map{|x| x["name"]}.sort).to eq(
+        ["Algolia", "ElasticSeach", "Materialized", "Solr"]
+      )
     end
   end
 end
