@@ -5,7 +5,7 @@ class RefreshRequiredStuffsForSearch < BaseService
 
   def call
     # elastic search searchkick reindex
-     Activity.searchkick_reindex()
+    Activity.searchkick_reindex()
 
     # material view reindex
     MaterializedSearchResult.refresh

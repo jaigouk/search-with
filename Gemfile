@@ -5,6 +5,10 @@ ruby "2.3.1"
 gem 'rails', '~> 5.0.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
+gem 'sidekiq'
+gem 'rack-protection', github: 'sinatra/rack-protection'
+gem 'sinatra', github: 'sinatra', require: false
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'

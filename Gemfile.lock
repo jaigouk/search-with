@@ -1,3 +1,20 @@
+GIT
+  remote: git://github.com/sinatra/rack-protection.git
+  revision: 7e723a74763bb83989d1249cdceb9cceb2ee6f01
+  specs:
+    rack-protection (2.0.0)
+      rack
+
+GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: a7483f48b0a18ba792e642a356e3b25cf30a354b
+  specs:
+    sinatra (2.0.0.pre.alpha)
+      mustermann (~> 0.4)
+      rack (~> 2.0)
+      rack-protection (~> 2.0)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -182,6 +199,8 @@ GEM
     minitest (5.9.0)
     multi_json (1.12.1)
     multipart-post (2.0.0)
+    mustermann (0.4.0)
+      tool (~> 0.2)
     nenv (0.3.0)
     nio4r (1.2.1)
     nokogiri (1.6.8)
@@ -298,6 +317,10 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    sidekiq (4.1.2)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -334,6 +357,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    tool (0.2.3)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.1)
@@ -393,6 +417,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rack-cache
   rack-mini-profiler
+  rack-protection!
   rails (~> 5.0.0)
   rails-assets-tether (>= 1.1.0)!
   readthis
@@ -409,7 +434,9 @@ DEPENDENCIES
   scss_lint
   searchkick
   shoulda-matchers (~> 3.1)
+  sidekiq
   simplecov
+  sinatra!
   spring
   spring-commands-rspec
   spring-watcher-listen

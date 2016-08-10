@@ -1,5 +1,7 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   root to: "home#index"
+  mount Sidekiq::Web => '/sidekiq'
   get  "elastic" => "home#elastic"
   get  "elastic_autocomplete" => "home#elastic_autocomplete"
 
