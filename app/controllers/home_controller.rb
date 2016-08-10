@@ -34,7 +34,9 @@ class HomeController < ApplicationController
   end
 
   def algolia
-    @activities = GetFacetsSearchResults.new(:algolia)
+    @activities = Kaminari.paginate_array(
+      [Activity.last]
+    ).page(1).per(2)
     render_results(@activities)
   end
 
