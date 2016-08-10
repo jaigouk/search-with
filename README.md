@@ -32,24 +32,15 @@ git push heroku master
 
 heroku run rake db:migrate
 heroku run rake db:seed
-heroku run rake searchkick:reindex:all
-heroku run rake materialized:refresh
+heroku run rake search_index:refresh
 heroku run rake materialized:clear_suggestions
 heroku run rake materialized:seed_suggestions
 ```
 
 # Generating benchmark data (console for now)
 
-```ruby
-params = {q: "Bubbles", camp: "false", page: 1, per_page: 5}
-
-comparison = CompareSearchMethods.new()
-bench_mark_data_param = comparison.call(params: params, time: 5, warmup: 2)
-
-save_bench_mark_data = SaveBenchMarkData.new()
-save_bench_mark_data.call(bench_mark_data_param)
-```
-
+click `Update the result` button in the bottom of landing page. 
+it will run sidekiq background job. Wait and visit again. 
 
 # todo
 
@@ -61,12 +52,11 @@ save_bench_mark_data.call(bench_mark_data_param)
 - [x] setup benchmarking
 - [x] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
 - [x] add some results on the landing page with descriptions
-
+- [x] [algolia](https://www.algolia.com)
+- [x] solr & sunspot
+- [ ] use [dry-rb](http://dry-rb.org/)
 - [ ] make save_bench_mark_data to accept params like `elastic vs solr`
 - [ ] show memory info
-- [ ] [algolia](https://www.algolia.com)
-- [ ] solr & sunspot
-- [ ] use [dry-rb](http://dry-rb.org/)
 - [ ] reactfy (also fix pagination)
 
 # Etc
