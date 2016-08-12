@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.3.1"
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sidekiq'
@@ -48,7 +48,7 @@ gem "bullet", :group => "development"
 
 ## scenic & materialized view
 gem "scenic"
-gem "textacular"
+gem "textacular", git: 'https://github.com/DuckNG/textacular.git', branch: 'support-rails-5.0.0.1'
 
 ## searchkick
 gem 'searchkick'

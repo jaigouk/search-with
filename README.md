@@ -56,7 +56,6 @@ it will run sidekiq background job. Wait and visit again.
 - [x] [algolia](https://www.algolia.com)
 - [x] solr & sunspot
 - [ ] use [dry-rb](http://dry-rb.org/)
-- [ ] make save_bench_mark_data to accept params like `elastic vs solr`
 - [ ] show memory info
 - [ ] reactfy (also fix pagination)
 
