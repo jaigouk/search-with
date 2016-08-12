@@ -16,9 +16,10 @@ https://search-with.jaigouk.com
 
 ```bash
 bundle install
-rake db:setup
-rake db:seed
-bundle exec rake sunspot:solr:start
+bin/rails db:setup
+bin/rails db:seed
+bin/rails sunspot:solr:start
+bin/rails search_index:refresh
 rails server
 ```
 
