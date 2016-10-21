@@ -18,7 +18,6 @@ https://search-with.jaigouk.com
 bundle install
 bin/rails db:setup
 bin/rails db:seed
-bin/rails sunspot:solr:start
 bin/rails search_index:refresh
 rails server
 ```
@@ -54,12 +53,11 @@ it will run sidekiq background job. Wait and visit again.
 - [x] [materialized view](http://confreaks.tv/videos/railsconf2016-multi-table-full-text-search-with-postgres)
 - [x] add some results on the landing page with descriptions
 - [x] [algolia](https://www.algolia.com)
-- [x] solr & sunspot
-- [ ] use [dry-rb](http://dry-rb.org/)
-- [ ] show memory info
-- [ ] reactfy (also fix pagination)
+
 
 # Etc
 
 `rails generate scenic:model recent_status --materialized`
 
+https://github.com/pires/kubernetes-elasticsearch-cluster
+https://github.com/mosuka/kubernetes-solr/tree/master/5.5

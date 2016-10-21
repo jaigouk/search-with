@@ -5,7 +5,6 @@ gem 'rails', '~> 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sidekiq'
-gem 'rack-protection', git: 'https://github.com/sinatra/rack-protection.git'
 gem 'sinatra', git: 'https://github.com/sinatra/sinatra.git', require: false
 
 gem 'sass-rails', '~> 5.0'
@@ -15,7 +14,7 @@ gem 'therubyracer', platforms: :ruby
 gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'sunspot_rails'
+
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
@@ -62,14 +61,11 @@ group :development, :test do
   gem "generator_spec"
   gem "launchy"
 
-  gem 'sunspot_solr'
-
   gem "pry"
   gem "pry-doc"
   gem "pry-rails"
   gem "pry-stack_explorer"
   gem "pry-rescue"
-  gem "pry-byebug"
   gem "guard-rspec"
 
   gem "scss_lint", require: false

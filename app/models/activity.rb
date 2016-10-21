@@ -28,15 +28,15 @@ class Activity < ApplicationRecord
     }
   end
 
-  ## for solr
-  searchable do
-    text :title
-    boolean :drop_in
-    boolean :camp
-    boolean :date_night
-    boolean :indoor
-    boolean :outdoor
-  end
+  # ## for solr
+  # searchable do
+  #   text :title
+  #   boolean :drop_in
+  #   boolean :camp
+  #   boolean :date_night
+  #   boolean :indoor
+  #   boolean :outdoor
+  # end
 
   include AlgoliaSearch
   ## for algolia

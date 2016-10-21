@@ -16,8 +16,8 @@ class GetFacetsSearchResults < BaseService
       elastic_search(params)
     when :materialized
       materialized_search(params)
-    when :solr
-      solr_search(params)
+    # when :solr
+    #   solr_search(params)
     when :algolia
       algolia_search(params)
     end
@@ -38,17 +38,17 @@ private
     ).page(page(params)).per(per_page(params))
   end
 
-  def solr_search(params)
-    Sunspot.search Activity do
-      with :date_night, true if params.has_key?(:date_night)
-      with :drop_in, true if params.has_key?(:drop_in)
-      with :camp, true if params.has_key?(:camp)
-      with :outdoor, true if params.has_key?(:outdoor)
-      with :indoor, true if params.has_key?(:indoor)
-      fulltext params[:term] if params[:term].present?
-      fulltext params[:q] if params[:q].present?
-    end.results
-  end
+  # def solr_search(params)
+  #   Sunspot.search Activity do
+  #     with :date_night, true if params.has_key?(:date_night)
+  #     with :drop_in, true if params.has_key?(:drop_in)
+  #     with :camp, true if params.has_key?(:camp)
+  #     with :outdoor, true if params.has_key?(:outdoor)
+  #     with :indoor, true if params.has_key?(:indoor)
+  #     fulltext params[:term] if params[:term].present?
+  #     fulltext params[:q] if params[:q].present?
+  #   end.results
+  # end
 
   def algolia_search(params)
     Activity.algolia_search(params[:q],

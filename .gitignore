@@ -4,6 +4,7 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+.env
 
 solr/development
 solr/development/*
@@ -44,3 +45,4 @@ spec/examples.txt
 
 coverage
 public/assets
+

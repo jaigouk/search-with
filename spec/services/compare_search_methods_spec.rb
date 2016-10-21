@@ -22,11 +22,11 @@ RSpec.describe GetFacetsSearchResults do
   describe 'self.call' do
     it 'returns benchmarking results' do
       benchmark = @benchmark.call(params: params, time: 5, warmup: 2)
-      expect(benchmark[:entries].size).to eq 4
+      expect(benchmark[:entries].size).to eq 3
       expect(benchmark[:result].include? 'Materialized').to be_truthy
       expect(benchmark[:result].include? 'ElasticSeach').to be_truthy
       expect(benchmark[:data].map{|x| x["name"]}.sort).to eq(
-        ["Algolia", "ElasticSeach", "Materialized", "Solr"]
+        ["Algolia", "ElasticSeach", "Materialized"]
       )
     end
   end

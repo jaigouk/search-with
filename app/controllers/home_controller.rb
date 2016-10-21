@@ -20,11 +20,11 @@ class HomeController < ApplicationController
     render json: Activity.search(params[:term], fields: [{title: :text_start}], limit: 5).map(&:title)
   end
 
-  def solr
-    solr_search = GetFacetsSearchResults.new(:solr)
-    @activities = solr_search.call(params)
-    render_results(@activities)
-  end
+  # def solr
+  #   solr_search = GetFacetsSearchResults.new(:solr)
+  #   @activities = solr_search.call(params)
+  #   render_results(@activities)
+  # end
 
   def algolia
     @activities = Kaminari.paginate_array(

@@ -14,7 +14,7 @@ end
 
 require 'spec_helper'
 require 'rspec/rails'
-require 'sunspot/rails/spec_helper'
+
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -24,9 +24,6 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
-
-# https://github.com/sunspot/sunspot/wiki/RSpec-and-Sunspot
-Sunspot.session = Sunspot::Rails::StubSessionProxy.new(Sunspot.session)
 
 # require 'vcr'
 
