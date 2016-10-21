@@ -18,7 +18,7 @@ FROM ruby:2.3-slim
 # images. It's not necessary but it's a good habit.
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
-      build-essential nodejs libpq-dev
+      build-essential nodejs libpq-dev git
 # Ensure that our apt package list is updated and install a few
 # packages to ensure that we can compile assets (nodejs) and
 # communicate with PostgreSQL (libpq-dev).
@@ -72,6 +72,7 @@ RUN bundle install --binstubs
 # This is mainly due for production compatibility assurance.
 
 COPY . .
+COPY ./.deis ./.env
 # This might look a bit alien but it's copying in everything from
 # the current directory relative to the Dockerfile, over to the
 # /web folder inside of the Docker image.
