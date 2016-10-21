@@ -18,7 +18,7 @@ FROM ruby:2.3-slim
 # images. It's not necessary but it's a good habit.
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
-      build-essential nodejs libpq-dev git
+     git build-essential nodejs libpq-dev
 # Ensure that our apt package list is updated and install a few
 # packages to ensure that we can compile assets (nodejs) and
 # communicate with PostgreSQL (libpq-dev).

@@ -1,59 +1,70 @@
-version: '1'
-
-services:
-  postgres:
-    image: 'postgres:9.5'
-    environment:
-      POSTGRES_USER: 'web'
-      POSTGRES_PASSWORD: 'yourpassword'
-    ports:
-      - '5432:5432'
-    volumes:
-      - 'postgres:/var/lib/postgresql/data'
-
-  redis:
-    image: 'redis:3.2-alpine'
-    command: redis-server --requirepass yourpassword
-    ports:
-      - '6379:6379'
-    volumes:
-      - 'redis:/var/lib/redis/data'
-
-  website:
-    depends_on:
-      - 'postgres'
-      - 'redis'
-    build: .
-    ports:
-      - '3000:3000'
-    volumes:
-      - '.:/web'
-    env_file:
-      - '.env'
-
-  sidekiq:
-    depends_on:
-      - 'postgres'
-      - 'redis'
-    build: .
-    command: sidekiq -C config/sidekiq.yml.erb
-    volumes:
-      - '.:/web'
-    env_file:
-      - '.env'
-
-  cable:
-    depends_on:
-      - 'redis'
-    build: .
-    command: puma -p 28080 cable/config.ru
-    ports:
-      - '28080:28080'
-    volumes:
-      - '.:/web'
-    env_file:
-      - '.env'
-
-volumes:
-  redis:
-  postgres:
+web:
+  build: .
+  command: 'bash -c ''bundle exec puma -C config/puma.rb'''
+  working_dir: /web
+  environment:
+    PORT: 8080
+    MEMCACHIER_SERVERS 10.3.0.11,10.3.0.211
+    MEMCACHIER_USERNAME memcached
+    MEMCACHIER_PASSWORD
+    RAILS_ENV production
+    RACK_ENV production
+    REDISCLOUD_URL redis://10.3.0.244:6379/search-with
+    DATABASE_URL postgres://stolon:stolon_postgres_cluster_134adsf34f@10.3.0.102:5432/search-with?encoding=utf
+    ALGOLIA_API_KEY 5fa544e050bca230b00755c8e56607a5
+    ALGOLIA_APP_ID 2C058CAWOC
+    ALGOLIASEARCH_API_KEY 5fa544e050bca230b00755c8e56607a5
+    ALGOLIASEARCH_API_KEY_SEARCH f3fdbd4012c046f8eb3fc9baef4997b9
+    ALGOLIASEARCH_APPLICATION_ID 2C058CAWOCmazonaws.com:9200/
+    ELASTICSEARCH_URL http://10.3.0.4:9200
+    LOG_LEVEL info
+    SECRET_TOKEN asecuretokenwouldnormallygohereasdf
+    RAILS_MAX_THREADS 4
+    WEB_CONCURRENCY 5
+    REQUEST_TIMEOUT 5
+    ACTIVE_JOB_URL redis://10.3.0.244:6379/1
+    ACTIVE_JOB_QUEUE_PREFIX saerch-with:jobs
+    ACTION_CABLE_BACKEND_URL redis://10.3.0.244:6379/1
+    ACTION_CABLE_FRONTEND_URL ws://localhost:28080
+    ACTION_CABLE_ALLOWED_REQUEST_ORIGINS http:\/\/localhost*
+  ports:
+    - '8080:8080'
+  links:
+    - herokuPostgresql
+shell:
+  build: .
+  command: bash
+  working_dir: /web
+  environment:
+    PORT: 8080
+    MEMCACHIER_SERVERS 10.3.0.11,10.3.0.211
+    MEMCACHIER_USERNAME memcached
+    MEMCACHIER_PASSWORD
+    RAILS_ENV production
+    RACK_ENV production
+    REDISCLOUD_URL redis://10.3.0.244:6379/search-with
+    DATABASE_URL postgres://stolon:stolon_postgres_cluster_134adsf34f@10.3.0.102:5432/search-with?encoding=utf
+    ALGOLIA_API_KEY 5fa544e050bca230b00755c8e56607a5
+    ALGOLIA_APP_ID 2C058CAWOC
+    ALGOLIASEARCH_API_KEY 5fa544e050bca230b00755c8e56607a5
+    ALGOLIASEARCH_API_KEY_SEARCH f3fdbd4012c046f8eb3fc9baef4997b9
+    ALGOLIASEARCH_APPLICATION_ID 2C058CAWOCmazonaws.com:9200/
+    ELASTICSEARCH_URL http://10.3.0.4:9200
+    LOG_LEVEL info
+    SECRET_TOKEN asecuretokenwouldnormallygohereasdf
+    RAILS_MAX_THREADS 4
+    WEB_CONCURRENCY 5
+    REQUEST_TIMEOUT 5
+    ACTIVE_JOB_URL redis://10.3.0.244:6379/1
+    ACTIVE_JOB_QUEUE_PREFIX saerch-with:jobs
+    ACTION_CABLE_BACKEND_URL redis://10.3.0.244:6379/1
+    ACTION_CABLE_FRONTEND_URL ws://localhost:28080
+    ACTION_CABLE_ALLOWED_REQUEST_ORIGINS http:\/\/localhost*
+  ports:
+    - '8080:8080'
+  links:
+    - herokuPostgresql
+  volumes:
+    - '.:/web'
+herokuPostgresql:
+  image: postgres
